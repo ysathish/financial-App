@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title mode="md" class="ion-no-padding">
+      <ion-label>
+        <ion-text color="tertiary">Welcome</ion-text>
+        <p><ion-text color="white"><strong>Sathish Yannapu</strong></ion-text></p>
+      </ion-label>
+    </ion-title>
+    <ion-avatar slot="end">
+      <img src="assets/icon/pic.jpg">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primar">
+ <ion-row>
+  <swiper>
+    <ng-template swiperSlide *ngFor="let account of accounts">
+      <div align="center">
+         <ion-label>
+          <span>total balance</span>
+          <p><ion-text>${{account?.balance}}</ion-text></p>
+          <span>{{account?.acc_no}}</span>
+         </ion-label>
+      </div>
+    </ng-template>
+
+  </swiper>
+ </ion-row>
+ <ion-row class="ion-text-center feature-list" *ngIf="features?.length > 0">
+  <swiper [config]="featureConfig">
+    <ng-template swiperSlide *ngFor="let feature of features">
+      <div>
+        <ion-button slot="icon-only" [color]="feature?.color">
+          <ion-icon [name]="feature?.icon"></ion-icon>
+        </ion-button>
+        <ion-label>{{feature?.name}}</ion-label>
+      </div>
+    </ng-template>
+  </swiper>
+ </ion-row>
+</ion-content>
