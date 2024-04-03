@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import SwiperCore, { SwiperOptions, Pagination } from 'swiper';
+import { Cards } from '../_modals/Cards';
+import { CardService } from '../../_services/card.service';
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
@@ -11,16 +13,12 @@ SwiperCore.use([Pagination]);
 export class CardPage implements OnInit, AfterContentChecked {
 
   bannerConfig: SwiperOptions;
-  cards: any[] = [];
+  cards={} as Cards[];
 
-  constructor() { }
+  constructor(private service:CardService) { }
 
   ngOnInit() {
-    this.cards = [
-      { id: 1, company_img: 'assets/icon/mastercard.png', card_no: '5786 8945 9098 1100', card_holder: 'Sathish', exp_date: '08/24' },
-      { id: 2, company_img: 'assets/icon/visa.png', card_no: '2006 7091 2014 8766', card_holder: 'Sathish', exp_date: '11/29' },
-      { id: 3, company_img: 'assets/icon/mastercard.png', card_no: '4016 3081 2056 7890', card_holder: 'Sathish', exp_date: '06/25' }
-    ];
+    this.cards=this.service.getCards();
   }
 
   ngAfterContentChecked() {

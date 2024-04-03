@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../../_services/home.service';
+import { Transactions } from '../_modals/Transactions';
 
 @Component({
   selector: 'app-transactions',
@@ -7,20 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionsPage implements OnInit {
 
-  allTransactions: any[] = [];
-  transactions: any;
+  allTransactions={} as Transactions[];
+  transactions={} as Transactions[]
   segmentValue = 'in';
 
-  constructor() { }
+  constructor(private service : HomeService) { }
 
   ngOnInit() {
-    this.allTransactions = [
-      { id: 1, to: 'Piyush Ag.', date: '2022-05-22', amount: 5000 },
-      { id: 2, to: 'Avinash', date: '2022-03-02', amount: 7000 },
-      { id: 3, to: 'Catherine', date: '2022-07-28', amount: -3250 },
-      { id: 4, to: 'Akhil Ag.', date: '2022-01-09', amount: 1000 },
-      { id: 5, to: 'Prem Ag.', date: '2022-04-13', amount: -800 },
-    ];
+    this.allTransactions=this.service.getTransactions();
+    
     this.filterTransactions();
   }
 
