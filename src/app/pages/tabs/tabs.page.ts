@@ -7,7 +7,6 @@ import { IonTabs } from '@ionic/angular';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  // @ViewChild('tabs', {static: true}) tabs: IonTabs;
   @ViewChild('tabs', {static: true}) tabs:any= IonTabs;
   selectedTab: any;
 
